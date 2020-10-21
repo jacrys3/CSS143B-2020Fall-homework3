@@ -5,35 +5,40 @@ public class ArrayStack<T> implements Stack<T> {
     private T[] data;
     private int size;
 
+
     private ArrayStack() {
     }
 
     public ArrayStack(int capacity) {
-        // homework
+        size = -1;
+        data = (T[])(new Object[capacity]);
     }
 
     @Override
     public boolean push(T val) {
-        // homework
-        return false;   // place holder
+        if(size >= data.length - 1){
+            return false;
+        }
+        data[++size] = val;
+
+        return true;
     }
 
     @Override
     public T pop() {
-        // homework
-        T val = null;   // place holder
-        return val;   // place holder
+        T val = data[size];
+        data[size--] = null;
+        return val;
     }
 
     @Override
     public T peek() {
-        // homework
-        T val = null;   // place holder
-        return val;   // place holder
+        T val = data[size];
+        return val;
     }
 
     @Override
     public int size() {
-        return size;
+        return size + 1;
     }
 }

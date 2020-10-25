@@ -16,7 +16,7 @@ public class ArrayStack<T> implements Stack<T> {
 
     @Override
     public boolean push(T val) {
-        if(val != null){
+        if(val != null && data.length > size){
             data[size] = val;
             size++;
             return true;
@@ -35,7 +35,7 @@ public class ArrayStack<T> implements Stack<T> {
 
     @Override
     public T peek() {
-        T val = data[size];
+        T val = data[size - 1];
         return val;
     }
 

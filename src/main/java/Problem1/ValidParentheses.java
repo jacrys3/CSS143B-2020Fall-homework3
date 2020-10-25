@@ -1,36 +1,35 @@
 package Problem1;
 
-import java.util.StringTokenizer;
 
 public class ValidParentheses {
 
     // Do not change signature (function name, parameters, return type)
     public static boolean isValid(String str) {
         ArrayStack data = new ArrayStack(str.length() / 2);
-        StringTokenizer st = new StringTokenizer(str);
         int pCount = 0;
         int bCount = 0;
         int cCount = 0;
 
-        for(int i = 0; i < str.length() - 1; i++){
-            if(st.nextToken() == "("){
-                data.push(st.nextToken());
+        for(int i = 0; i < str.length(); i++){
+            char let = str.charAt(i);
+            if(let == '('){
+                data.push(let);
                 pCount++;
-            } else if(data.peek() == "(" && st.nextToken() == ")"){
+            } else if(let == ')' && data.peek() == "(" ){
                 data.pop();
                 pCount--;
             }
-            if(st.nextToken() == "{"){
-                data.push(st.nextToken());
+            if(let == '{'){
+                data.push(let);
                 cCount++;
-            } else if(data.peek() == "{" && st.nextToken() == "}"){
+            } else if(let == '}' && data.peek() == "{"){
                 data.pop();
                 cCount--;
             }
-            if(st.nextToken() == "["){
-                data.push(st.nextToken());
+            if(let == '['){
+                data.push(let);
                 bCount++;
-            } else if(data.peek() == "[" && st.nextToken() == "]"){
+            } else if(let == ']' && data.peek() == "["){
                 data.pop();
                 bCount--;
             }

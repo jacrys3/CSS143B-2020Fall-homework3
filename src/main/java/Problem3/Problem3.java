@@ -8,9 +8,20 @@ import java.io.PrintStream;
 
 public class Problem3 {
     public static void printListInReverse(ListNode list, PrintStream print) {
-        // homework
-        // !!! must use your ArrayStack or LinkedListStack in problem 1
-        // print with the following format. System.out.println() will not pass test.
-        print.println("hello world");   // place holder
+        if(list == null || list.next == null){
+            print.println(list);
+            return;
+        }
+        LinkedListStack data = new LinkedListStack();
+        ListNode ptr = list;
+        while(ptr != null){
+            data.push(ptr);
+            ptr = ptr.next;
+        }
+        ptr = list;
+        for (int i = 0; i < data.size(); i++) {
+            print.println(data.pop());
+
+        }
     }
 }

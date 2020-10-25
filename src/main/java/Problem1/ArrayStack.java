@@ -26,7 +26,7 @@ public class ArrayStack<T> implements Stack<T> {
 
     @Override
     public T pop() {
-        T val;
+        T val = null;
         val = data[size - 1];
         size--;
 
@@ -35,7 +35,8 @@ public class ArrayStack<T> implements Stack<T> {
 
     @Override
     public T peek() {
-        return data[size - 1];
+        T val = data[size];
+        return val;
     }
 
     @Override

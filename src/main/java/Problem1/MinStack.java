@@ -1,44 +1,38 @@
 package Problem1;
 
+import java.lang.reflect.Array;
+
 public class MinStack extends ArrayStack<Integer> {
     // okay to add member variables
     // can only use Stack interface and ArrayStack from this folder
     // do not use Java Stack
-    private int min = 0;
-    private int index = 0;
-    private int size;
+    ArrayStack mini;
 
     public MinStack(int size) {
         super(size);
-        this.size = 0;
+        mini = new ArrayStack(size);
     }
 
     @Override
     public boolean push(Integer val) {
-        if(size == 0) min = val;
-        else if(min > val){
-            min = val;
-            index++;
+        if(mini.size() == 0) mini.push(val);
+        else if((Integer) mini.peek() > val){
+            mini.pop();
+            mini.push(val);
         }
-        size++;
         return super.push(val);
     }
 
     @Override
     public Integer pop() {
-        size--;
-        if(min != peek()){
-            return super.pop();
+        if(mini.peek() == super.peek()){
+            mini.pop();
         }
-        Integer num = super.pop();
-        min = getMin();
-        return num;
+        return super.pop();
     }
 
     public Integer getMin() {
-        if(size == 0) return null;
-        else if(size == 1) return peek();
-        return min;
+        return (Integer) mini.peek();
     }
 }
 

@@ -26,12 +26,13 @@ public class MinStack extends ArrayStack<Integer> {
 
     @Override
     public Integer pop() {
-        if(index == size){
-            index--;
-            min = this.peek();
-        }
         size--;
-        return super.pop();
+        if(min != peek()){
+            return super.pop();
+        }
+        Integer num = super.pop();
+        min = getMin();
+        return num;
     }
 
     public Integer getMin() {

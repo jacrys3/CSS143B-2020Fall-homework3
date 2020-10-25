@@ -15,8 +15,9 @@ public class MinStack extends ArrayStack<Integer> {
 
     @Override
     public boolean push(Integer val) {
-        if(mini.size() == 0) mini.push(val);
-        else if((Integer) mini.peek() > val){
+        if(super.size() == 0){
+            mini.push(val);
+        } else if((Integer) mini.peek() > val) {
             mini.pop();
             mini.push(val);
         }
@@ -25,13 +26,12 @@ public class MinStack extends ArrayStack<Integer> {
 
     @Override
     public Integer pop() {
-        if(mini.peek() == super.peek()){
-            mini.pop();
-        }
+
         return super.pop();
     }
 
     public Integer getMin() {
+        if(mini.size() == 0) return null;
         return (Integer) mini.peek();
     }
 }

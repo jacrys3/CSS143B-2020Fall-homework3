@@ -5,43 +5,34 @@ public class ValidParentheses {
 
     // Do not change signature (function name, parameters, return type)
     public static boolean isValid(String str) {
-        LinkedListStack data = new LinkedListStack();
-        int pCount = 0;
-        int bCount = 0;
-        int cCount = 0;
+        ArrayStack data = new ArrayStack(str.length());
+        if(str == null || str.length() == 0) return true;
+        if(str.length() % 2 == 1) return false;
 
-        for(int i = 0; i < str.length(); i++){
-            char top = (char) data.peek();
-            char let = str.charAt(i);
-            switch (let){
+        char chr = str.charAt(0);
+        if (chr == '(' || chr == '{' || chr == '[') data.push(chr);
+        else return false;
+
+        for (int i = 1; i < str.length(); i++) {
+            chr = str.charAt(i);
+            switch(chr){
                 case '(':
-                    data.push(let);
-                    pCount++;
+                    data.push(chr);
                 case '{':
-                    data.push(let);
-                    cCount++;
+                    data.push(chr);
                 case '[':
-                    data.push(let);
-                    bCount++;
-            }
-            switch (top){
-                case '(':
-                    if(let == ')'){
-                        data.pop();
-                        pCount--;
-                    }
-                case '{':
-                    if(let == '}'){
-                        data.pop();
-                        cCount--;
-                    }
-                case '[':
-                    if(let == ']'){
-                        data.pop();
-                        bCount--;
-                    }
+                    data.push(chr);
+                case ')':
+                    if((char) data.peek() != '(') return false;
+                    data.pop();
+                case '}':
+                    if((char) data.peek() != '{') return false;
+                    data.pop();
+                case ']':
+                    if((char) data.peek() != '[') return false;
+                    data.pop();
             }
         }
-        return cCount == 0 && bCount == 0 && pCount == 0;
+        return true;
     }
 }

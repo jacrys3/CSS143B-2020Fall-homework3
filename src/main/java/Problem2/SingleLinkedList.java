@@ -12,7 +12,20 @@ public class SingleLinkedList {
 
     // copy constructor
     public SingleLinkedList(SingleLinkedList list) {
-        // homework
+        if(list==null){
+            return;
+        }
+        ListNode p1 = new ListNode(); // followed prof Du youtube video for this constructor.
+        head = p1;
+
+        ListNode p2 = list.head.next;
+
+        while(p2 != null){
+            p1.next = new ListNode(p2.val);
+            p1 = p1.next;
+            p2 = p2.next;
+        }
+        size = list.size;
     }
 
     public int removeAll(int valueToRemove) {

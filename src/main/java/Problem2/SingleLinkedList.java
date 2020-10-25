@@ -30,32 +30,37 @@ public class SingleLinkedList {
     }
 
     public int removeAll(int valueToRemove) {
+        if(head == null || head.next == null || head.next.next == null) return 0;
         int count = 0;
-        if(head == null || head.next == null) return 0;
-        if(head.val == valueToRemove) {
-            head = null;
-            return 1;
-        }
-        ListNode p1 = head;
-        for (int i = 0; i < size - 1; i++) {
+        ListNode p1 = head.next;
+        ListNode p2;
+        int temp;
+        while (p1 != null){
+            p2 = p1.next;
             if(p1.val == valueToRemove){
-                p1.next = p1;
-                p1 = p1.next;
-                count++;
+
             }
+            p1 = p1.next;
         }
         return count;
     }
 
     // reverse the linked list nodes iteratively (no recursion)
     public void reverse() {
-        //if(head == null || head.next == null) return;
+        if(head == null || head.next == null) return;
+        if(size == 1) return;
         ListNode p1 = head.next;
+        ListNode p2;
 
-        while(p1 != null){
-            ListNode p2 = p1.next;
+        for(int i = 0; i < size - 1; i++){
+            //if(p1.next == null) break;
+            p2 = p1.next;
+            p1.next = p1;
             head.next = p2;
-            p1.next = p2;
+
+            /* I know i need to put logic in here so that it puts p2 at head.next, then it puts p1 at p2.next
+             * and then it puts p2 at p1.next
+             */
         }
 
     }

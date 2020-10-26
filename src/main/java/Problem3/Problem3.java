@@ -15,11 +15,13 @@ public class Problem3 {
         list = list.next;
         LinkedListStack data = new LinkedListStack();
         while(list.next != null){
+            list = list.next;
             data.push(list.val);
+            //list = list.next;
         }
         while(data.size() > 0){
             print.println(data.pop());
         }
-        print.println(head.val);
+        print.println(head.next.val);
     }
 }

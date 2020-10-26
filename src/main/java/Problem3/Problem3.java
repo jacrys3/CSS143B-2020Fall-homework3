@@ -17,7 +17,6 @@ public class Problem3 {
         while(list.next != null){
             list = list.next;
             data.push(list.val);
-            //list = list.next;
         }
         while(data.size() > 0){
             print.println(data.pop());

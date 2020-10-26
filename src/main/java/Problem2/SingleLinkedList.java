@@ -30,17 +30,18 @@ public class SingleLinkedList {
     }
 
     public int removeAll(int valueToRemove) {
-        if(head == null || head.next == null || head.next.next == null) return 0;
+        if(head == null || head.next == null) return 0;
         int count = 0;
-        ListNode p1 = head.next;
-        ListNode p2;
-        int temp;
-        while (p1 != null){
-            p2 = p1.next;
-            if(p1.val == valueToRemove){
+        ListNode p1 = head;
 
+        while (p1.next != null){
+            if(p1.next.val == valueToRemove){
+                count++;
+                p1.next = p1.next.next;
+                size--;
+            }else {
+                p1 = p1.next;
             }
-            p1 = p1.next;
         }
         return count;
     }

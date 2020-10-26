@@ -8,11 +8,28 @@ import java.io.PrintStream;
 
 public class Problem3 {
     public static void printListInReverse(ListNode list, PrintStream print) {
-        if(list == null || list.next == null){
+        if(list == null) return;
+        if(list.next == null){
             print.println(list);
             return;
         }
-        LinkedListStack data = new LinkedListStack();
+        int size = 0;
+        ListNode temp = list;
+        while(list.next != null){
+            temp = temp.next;
+            size++;
+        }
+        temp = list;
+        ArrayStack data = new ArrayStack(size);
+        while(data.peek() != null){
+            temp.next = (ListNode) data.peek();
+            temp = temp.next;
+            print.println((int) data.peek());
+            data.pop();
+        }
+        temp.next = null;
+
+        /*LinkedListStack data = new LinkedListStack();
         ListNode ptr = list;
         while(ptr.next != null){
             data.push(ptr);
@@ -25,7 +42,7 @@ public class Problem3 {
             data.pop();
         }
         ptr.next = null;
-        printList(list, print);
+        printList(list, print);*/
     }
 
     private static void printList(ListNode data, PrintStream print){

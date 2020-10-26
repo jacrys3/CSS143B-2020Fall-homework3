@@ -50,20 +50,17 @@ public class SingleLinkedList {
     public void reverse() {
         if(head == null || head.next == null) return;
         if(size == 1) return;
-        ListNode p1 = head.next;
-        ListNode p2;
+        ListNode p1 = null;
+        ListNode p2 = head.next;
 
-        for(int i = 0; i < size - 1; i++){
-            //if(p1.next == null) break;
-            p2 = p1.next;
-            p1.next = p1;
-            head.next = p2;
+        while(p2 != null){
+            ListNode p3 = p2.next;
 
-            /* I know i need to put logic in here so that it puts p2 at head.next, then it puts p1 at p2.next
-             * and then it puts p2 at p1.next
-             */
+            p2.next = p1;
+            p1 = p2;
+            p2 = p3;
         }
-
+        head.next = p1;
     }
 
     // do not change any function below

@@ -1,6 +1,5 @@
 package Problem1;
 
-import java.lang.reflect.Array;
 
 public class MinStack extends ArrayStack<Integer> {
     // okay to add member variables

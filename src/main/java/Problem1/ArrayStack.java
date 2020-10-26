@@ -1,35 +1,42 @@
 package Problem1;
-
+//
 public class ArrayStack<T> implements Stack<T> {
     // do not change member variables
     private T[] data;
     private int size;
 
+
     private ArrayStack() {
     }
 
     public ArrayStack(int capacity) {
-        // homework
+        size = 0;
+        data = (T[])(new Object[capacity]);
     }
 
     @Override
     public boolean push(T val) {
-        // homework
-        return false;   // place holder
+        if(val != null && data.length > size){
+            data[size] = val;
+            size++;
+            return true;
+        }
+        return false;
     }
 
     @Override
     public T pop() {
-        // homework
-        T val = null;   // place holder
-        return val;   // place holder
+        T val = null;
+        val = data[size - 1];
+        size--;
+
+        return val;
     }
 
     @Override
     public T peek() {
-        // homework
-        T val = null;   // place holder
-        return val;   // place holder
+        T val = data[size - 1];
+        return val;
     }
 
     @Override

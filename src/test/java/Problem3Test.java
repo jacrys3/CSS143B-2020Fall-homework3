@@ -38,7 +38,7 @@ public class Problem3Test {
 
             Problem3.printListInReverse(arrayToList(inputs[i]), ps);
 
-            String tmp = baos.toString().replace("\n", " ").trim();
+            String tmp = baos.toString().replace("\n", " ").replace("\r", "").trim();
             if (inputs[i].length != 0) {
                 int[] actual = Arrays.stream(tmp.split(" ")).mapToInt(Integer::parseInt).toArray();
                 assertArrayEquals(expected[i], actual);

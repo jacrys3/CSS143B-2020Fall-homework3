@@ -1,31 +1,47 @@
 package Problem1;
 
+
 public class MinStack extends ArrayStack<Integer> {
     // okay to add member variables
     // can only use Stack interface and ArrayStack from this folder
     // do not use Java Stack
+    ArrayStack<Integer> mini;
 
     public MinStack(int size) {
-        // homework
-        super(size); // place holder
+        super(size);
+        mini = new ArrayStack(size);
     }
 
     @Override
     public boolean push(Integer val) {
-        // homework
-        return false; // place holder
+        if(isMin(val)){
+            mini.push(val);
+        }
+        return super.push(val);
     }
 
     @Override
     public Integer pop() {
-        // homework
-        return -1; // place holder
+        int temp = super.pop();
+        if(getMin() == temp){
+            mini.pop();
+        }
+        return temp;
+    }
+
+    private boolean isMin(int val){
+        if(mini.size() == 0){
+            return true;
+        } else if(getMin() >= val) {
+            return true;
+        }
+        return false;
     }
 
     public Integer getMin() {
-        // homework
-        // loop of any kind is not allowed
-        return -1; // place holder
+        if(mini.size() == 0) return null;
+        Integer min = mini.peek();
+        return min;
     }
 }
 

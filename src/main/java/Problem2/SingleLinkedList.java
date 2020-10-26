@@ -1,5 +1,6 @@
 package Problem2;
 
+
 // all functions assume using dummy node
 public class SingleLinkedList {
     // do not add member variables
@@ -12,19 +13,54 @@ public class SingleLinkedList {
 
     // copy constructor
     public SingleLinkedList(SingleLinkedList list) {
-        // homework
+        if(list==null){
+            return;
+        }
+        ListNode p1 = new ListNode(); // followed prof Du youtube video for this constructor.
+        head = p1;
+
+        ListNode p2 = list.head.next;
+
+        while(p2 != null){
+            p1.next = new ListNode(p2.val);
+            p1 = p1.next;
+            p2 = p2.next;
+        }
+        size = list.size;
     }
 
     public int removeAll(int valueToRemove) {
-        // homework
-        // in-place
-        return -1; // place holder
+        if(head == null || head.next == null) return 0;
+        int count = 0;
+        ListNode p1 = head;
+
+        while (p1.next != null){
+            if(p1.next.val == valueToRemove){
+                count++;
+                p1.next = p1.next.next;
+                size--;
+            }else {
+                p1 = p1.next;
+            }
+        }
+        return count;
     }
 
     // reverse the linked list nodes iteratively (no recursion)
     public void reverse() {
-        // homework
-        // in-place
+        if(head == null || head.next == null) return;
+        if(size == 1) return;
+        ListNode p1 = null;
+        ListNode p2 = head.next;
+
+        while(p2 != null){
+            ListNode p3 = p2.next;
+
+            p2.next = p1;
+            p1 = p2;
+            p2 = p3;
+        }
+        head.next = p1;
     }
 
     // do not change any function below

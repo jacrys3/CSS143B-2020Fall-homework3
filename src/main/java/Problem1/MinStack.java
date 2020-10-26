@@ -6,7 +6,7 @@ public class MinStack extends ArrayStack<Integer> {
     // okay to add member variables
     // can only use Stack interface and ArrayStack from this folder
     // do not use Java Stack
-    ArrayStack mini;
+    ArrayStack<Integer> mini;
 
     public MinStack(int size) {
         super(size);
@@ -23,31 +23,25 @@ public class MinStack extends ArrayStack<Integer> {
 
     @Override
     public Integer pop() {
-        if(getMin() == super.peek()){
-            super.pop();
+        int temp = super.pop();
+        if(getMin() == temp){
             mini.pop();
-            setMin(super.peek());
         }
-        return super.pop();
+        return temp;
     }
 
     private boolean isMin(int val){
-        if(super.size() == 0){
+        if(mini.size() == 0){
             return true;
-        } else if((Integer) mini.peek() > val) {
-            mini.pop();
-            mini.push(val);
+        } else if(getMin() >= val) {
             return true;
         }
         return false;
     }
-    private void setMin(int min){
-        if(mini.size() == 0)
-            mini.push(min);
-    }
 
     public Integer getMin() {
-        Integer min = (Integer) mini.peek();
+        if(mini.size() == 0) return null;
+        Integer min = mini.peek();
         return min;
     }
 }
